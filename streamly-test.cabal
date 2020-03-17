@@ -1,0 +1,90 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 33186672ea0dd043ebce0b119206e10c8efe7ed13b49842ed4f1590949dbd441
+
+name:           streamly-test
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/streamly-test#readme>
+homepage:       https://github.com/githubuser/streamly-test#readme
+bug-reports:    https://github.com/githubuser/streamly-test/issues
+author:         Author name here
+maintainer:     example@example.com
+copyright:      2020 Author name here
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/streamly-test
+
+library
+  exposed-modules:
+      NewsApi
+      NewsStreams
+  other-modules:
+      Paths_streamly_test
+  hs-source-dirs:
+      src
+  build-depends:
+      HTTP
+    , aeson
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , http-conduit
+    , network-uri
+    , streamly
+    , text
+    , text-latin1
+  default-language: Haskell2010
+
+executable streamly-test-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_streamly_test
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      HTTP
+    , aeson
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , http-conduit
+    , network-uri
+    , streamly
+    , streamly-test
+    , text
+    , text-latin1
+  default-language: Haskell2010
+
+test-suite streamly-test-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_streamly_test
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      HTTP
+    , aeson
+    , base >=4.7 && <5
+    , bytestring
+    , containers
+    , http-conduit
+    , network-uri
+    , streamly
+    , streamly-test
+    , text
+    , text-latin1
+  default-language: Haskell2010
