@@ -11,8 +11,8 @@ import qualified Data.Text as T
 import           NewsApi
 import           NewsStreams
 
-numStories :: Int
-numStories = 30
+maxNumStories :: Int
+maxNumStories = 30
 
 numCommenters :: Int
 numCommenters = 10
@@ -38,10 +38,11 @@ printStory s = do
 main :: IO ()
 main = do
   putStrLn "TOP STORIES"
-  storyIds <- take numStories <$> topStories
+  storyIds <- take maxNumStories <$> topStories
+  let numStories = length storyIds
   stories <- S.toList . adapt . S.take numStories
-             =<< getStoriesWithComments . S.mapM printStory . S.take numStories
-             =<< getStories storyIds
+             . getStoriesWithComments . S.mapM printStory . S.take numStories
+             $ getStories storyIds
   putStrLn "\nTOP COMMENTERS"
   forM (getTopCommenters stories) $
     \(UserId name, count) -> putStrLn (T.unpack name <> " - " <> show count)
